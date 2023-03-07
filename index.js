@@ -50,9 +50,12 @@ function addSuggestionToDom(suggestion) {
    // add the div element to the dom
    document.getElementById("search-container").appendChild(suggestion.el);
    // Add an event listener which adds the suggestion to the grid when clicked
-   suggestion.el.addEventListener("click", function() {getPlaceWeather(suggestion.lat, suggestion.lon);});
+   suggestion.el.addEventListener("click", function() {addPlaceToGrid(suggestion.lat, suggestion.lon);});
 }
 
-function getPlaceWeather(lat, lon) {
-   console.log("latitude: " + lat + ", longitude: " + lon);
+// call weather api
+function addPlaceToGrid(lat, lon) {
+   getWeather(lat, lon).then((weatherData) => {
+      console.log(weatherData);
+   });
 }
