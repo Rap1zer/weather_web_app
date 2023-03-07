@@ -10,7 +10,6 @@ async function getWeather(lat, lon) {
 async function getCoord(city, limit) {
    if (city != "") {
       const url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${limit}&appid=${apiKey}`;
-      console.log(url);
       const response = await fetch(url);
       return response.json();
    } else {
