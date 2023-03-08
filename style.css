@@ -16,7 +16,6 @@ button:focus {
 }
 
 header {
-   position: fixed;
    background-color: #de3c3c;
    display: flex;
    align-items: center;
