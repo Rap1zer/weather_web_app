@@ -1,5 +1,7 @@
 const searchBarEl = document.getElementById("input-bar");
 const searchBtn = document.getElementById("search-btn");
+const searchContainerEl = document.getElementById("search-container");
+const gridContainerEl = document.getElementById("weather-grid");
 const limit = 5;
 let suggestions = [];
 
@@ -48,9 +50,15 @@ function addSuggestionToDom(suggestion) {
    suggestion.el.classList.add("search");
    suggestion.el.classList.add("suggestion");
    // add the div element to the dom
-   document.getElementById("search-container").appendChild(suggestion.el);
+   searchContainerEl.appendChild(suggestion.el);
    // Add an event listener which adds the suggestion to the grid when clicked
-   suggestion.el.addEventListener("click", function() {addPlaceToGrid(suggestion.lat, suggestion.lon);});
+   suggestion.el.addEventListener("click", function() { addCard()/*addPlaceToGrid(suggestion.lat, suggestion.lon)*/;});
+}
+
+function addCard() {
+   let card = document.createElement("div");
+   card.textContent = "A card."
+   gridContainerEl.appendChild(card);
 }
 
 // call weather api
