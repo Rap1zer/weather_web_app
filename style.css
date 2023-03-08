@@ -72,6 +72,10 @@ h1 {
    background-color: #eaeaea;
 }
 
+#weather-grid {
+   display: grid;
+}
+
 @media only screen and (max-width: 1040px) {
    header {
       flex-direction: column;
