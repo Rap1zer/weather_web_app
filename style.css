@@ -5,7 +5,8 @@
 
 body {
    margin: 0;
-   background-color: #29282b;
+   background: rgb(21,142,218);
+   background: linear-gradient(rgba(21,152,218,1) 15%, rgba(36,215,250,1) 48%, rgba(90,227,222,1) 78%);
 }
 
 input:focus,
@@ -16,11 +17,11 @@ button:focus {
 }
 
 header {
-   background-color: #de3c3c;
    display: flex;
    align-items: center;
-   padding: 10px 2vw;
+   padding: 0 2vw;
    width: 100vw;
+   height: 80px;
 }
 
 h1 {
@@ -37,7 +38,7 @@ h1 {
 #search-btn {
    border: 0;
    border-radius: 0 5px 5px 0;
-   background-color: #29282b;
+   background-color: #de3c3c;
    color: white;
    width: 100px;
    height: 2.5rem;
@@ -73,7 +74,15 @@ h1 {
 }
 
 #weather-grid {
+   width: 100vw;
+   height: calc(100vh - 80px);
    display: grid;
+}
+
+.card {
+   background-color: white;
+   text-align: center;
+   border-radius: 30px;
 }
 
 @media only screen and (max-width: 1040px) {

@@ -5,38 +5,37 @@ const gridContainerEl = document.getElementById("weather-grid");
 const limit = 5;
 let suggestions = [];
 
+let gridColumns = 1;
+let gridRows = 1;
+let cardCount = 0;
+
 // Show suggestions when something is typed into the search bar
-searchBarEl.addEventListener("input", ()=> {
+searchBarEl.addEventListener("input", async ()=> {
    // call geocoder API to see whether there are any cities that match the user's search
-   getCoord(searchBarEl.value, limit).then((result) => {
-      // styling which changes the border radius of the search bar
-      if (result.length > 0) {
-         searchBarEl.style.borderRadius = '5px 0 0 0';
-      } else {
-         searchBarEl.style.borderRadius = '5px 0 0 5px';
+   let result = await getCoord(searchBarEl.value, limit);
+   // styling which changes the border radius of the search bar
+   if (result.length > 0) {
+      searchBarEl.style.borderRadius = '5px 0 0 0';
+   } else {
+      searchBarEl.style.borderRadius = '5px 0 0 5px';
+   }
+
+   removeSuggestions();
+
+   // add suggestions
+   for(let i = 0; i < result.length; i++) {
+      const place = result[i];
+      let suggestion = new Suggestion(document.createElement("div"), place.name, place.lat, place.lon);
+      if (place.state) {
+         suggestion.name += ", " + place.state;
+      }
+      if (place.country) {
+         suggestion.name += ", " + place.country;
       }
 
-      // remove any previous suggestions
-      for (let i = 0; i <suggestions.length; i++) {
-         suggestions[i].el.remove();
-      }
-      suggestions = [];
-
-      // add suggestions
-      for(let i = 0; i < result.length; i++) {
-         const place = result[i];
-         let suggestion = new Suggestion(document.createElement("div"), place.name, place.lat, place.lon);
-         if (place.state) {
-            suggestion.name += ", " + place.state;
-         }
-         if (place.country) {
-            suggestion.name += ", " + place.country;
-         }
-
-         addSuggestionToDom(suggestion);
-         suggestions.push(suggestion);
-      }
-   })
+      addSuggestionToDom(suggestion);
+      suggestions.push(suggestion);
+   }
 });
 
 searchBtn.addEventListener("click", ()=> {
@@ -57,13 +56,30 @@ function addSuggestionToDom(suggestion) {
 
 function addCard() {
    let card = document.createElement("div");
-   card.textContent = "A card."
+   card.classList.add("card");
+
+   gridContainerEl.style.gridTemplateColumns = `repeat(${gridColumns}, 1fr)`;
+   gridContainerEl.style.gridTemplateRows = `repeat(${gridRows}, 1fr)`;
+   if (gridColumns < 3) {
+      gridColumns++;
+   } else if (gridRows < 2) {
+      gridRows++;
+   }
+
    gridContainerEl.appendChild(card);
+   cardCount++;
 }
 
 // call weather api
-function addPlaceToGrid(lat, lon) {
-   getWeather(lat, lon).then((weatherData) => {
-      console.log(weatherData);
-   });
+async function addPlaceToGrid(lat, lon) {
+   let result = await getWeather(lat, lon);
+   console.log(weatherData);
+}
+
+// remove any previous suggestions
+function removeSuggestions() {
+   for (let i = 0; i <suggestions.length; i++) {
+      suggestions[i].el.remove();
+   }
+   suggestions = [];
 }
