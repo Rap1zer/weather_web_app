@@ -55,19 +55,13 @@ function addSuggestionToDom(suggestion) {
 }
 
 function addCard() {
-   let card = document.createElement("div");
-   card.classList.add("card");
-
-   gridContainerEl.style.gridTemplateColumns = `repeat(${gridColumns}, 1fr)`;
-   gridContainerEl.style.gridTemplateRows = `repeat(${gridRows}, 1fr)`;
-   if (gridColumns < 3) {
-      gridColumns++;
-   } else if (gridRows < 2) {
-      gridRows++;
+   if (cardCount < 20) {
+      let card = document.createElement("div");
+      card.classList.add("card");
+   
+      gridContainerEl.appendChild(card);
+      cardCount++;
    }
-
-   gridContainerEl.appendChild(card);
-   cardCount++;
 }
 
 // call weather api
