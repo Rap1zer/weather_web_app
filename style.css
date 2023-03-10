@@ -19,16 +19,16 @@ button:focus {
 header {
    display: flex;
    align-items: center;
+   margin-bottom: 40px;
    padding: 0 2vw;
    width: 100vw;
-   height: 80px;
 }
 
 h1 {
    text-align: center;
    color: white;
    font-size: 3rem;
-   margin: 0 2vw;
+   margin: 20px 2vw;
 }
 
 #search-bar {
@@ -82,9 +82,9 @@ h1 {
 .card {
    display: inline-block;
    margin: 10px 20px;
-   width: calc((100vw / 5) - 40px);
-   min-width: 250px;
-   height: 320px;
+   width: calc(100vw - 40px);
+   max-width: 300px;
+   height: 370px;
    background-color: white;
    text-align: center;
    border-radius: 30px;

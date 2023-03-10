@@ -54,16 +54,6 @@ function addSuggestionToDom(suggestion) {
    suggestion.el.addEventListener("click", function() { addCard()/*addPlaceToGrid(suggestion.lat, suggestion.lon)*/;});
 }
 
-function addCard() {
-   if (cardCount < 20) {
-      let card = document.createElement("div");
-      card.classList.add("card");
-   
-      gridContainerEl.appendChild(card);
-      cardCount++;
-   }
-}
-
 // call weather api
 async function addPlaceToGrid(lat, lon) {
    let result = await getWeather(lat, lon);
