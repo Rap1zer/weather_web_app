@@ -82,8 +82,7 @@ h1 {
 .card {
    display: inline-block;
    margin: 10px 20px;
-   width: calc(100vw - 40px);
-   max-width: 300px;
+   width: 300px; /* will be changed in cardStyling.js */
    height: 370px;
    background-color: white;
    text-align: center;
