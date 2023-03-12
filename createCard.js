@@ -1,8 +1,10 @@
 const cardWidth = 300;
 const marginWidth = 20;
+const weatherBackgrounds = new Map();
+weatherBackgrounds.set("");
 
 function addCard(selectedSuggestion) {
-   if (cardCount > 20) { // Do not add a new card if maximum number of cards is already reached.
+   if (cardCount > 10) { // Do not add a new card if maximum number of cards is already reached.
       return;
    }
    cardCount++;
@@ -38,5 +40,4 @@ async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
    const {main, sys, weather} = data;
    console.log(data);
-   card.title.textContent = "Some Place.";
 }

@@ -26,6 +26,5 @@ class Card {
       this.temp = document.createElement("p");
       this.temp.textContent = "some text";
       this.el.append(this.title, this.icon, this.temp);
-      console.log(this.el.innerHTML);
    }
 }
