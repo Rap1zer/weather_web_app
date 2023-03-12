@@ -4,13 +4,14 @@ const marginWidth = 20;
 function addCard(selectedSuggestion) {
    if (cardCount < 20) {
       let card = new Card(document.createElement("div"), selectedSuggestion.name, selectedSuggestion.lat, selectedSuggestion.lon);
+      console.log(card);
       card.el.classList.add("card");
    
       gridContainerEl.appendChild(card.el);
       cardCount++;
 
       updateCardSizing();
-      getWeatherInfo();
+      getWeatherInfo(card);
    }
 }
 
@@ -29,7 +30,7 @@ function updateCardSizing() {
 }
 
 // call weather api
-async function getWeatherInfo() {
-   let result = await getWeather(lat, lon);
+async function getWeatherInfo(card) {
+   let weatherData = await getWeather(card.lat, card.lon);
    console.log(weatherData);
 }
