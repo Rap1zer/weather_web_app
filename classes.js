@@ -21,10 +21,11 @@ class Card {
    addHTMLmarkup() {
       const div = this.el;
       this.title = document.createElement("h2");
+      this.title.textContent = this.name;
       this.icon = document.createElement("img");
       this.temp = document.createElement("p");
       this.temp.textContent = "some text";
-      this.el.appendChild(this.temp);
-      console.log(this.temp);
+      this.el.append(this.title, this.icon, this.temp);
+      console.log(this.el.innerHTML);
    }
 }

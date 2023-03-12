@@ -38,5 +38,5 @@ async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
    const {main, sys, weather} = data;
    console.log(data);
-   card.el.textContent = main.temp;
+   card.title.textContent = "Some Place.";
 }
