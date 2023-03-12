@@ -2,17 +2,21 @@ const cardWidth = 300;
 const marginWidth = 20;
 
 function addCard(selectedSuggestion) {
-   if (cardCount < 20) {
-      let card = new Card(document.createElement("div"), selectedSuggestion.name, selectedSuggestion.lat, selectedSuggestion.lon);
-      console.log(card);
-      card.el.classList.add("card");
-   
-      gridContainerEl.appendChild(card.el);
-      cardCount++;
-
-      updateCardSizing();
-      getWeatherInfo(card);
+   if (cardCount > 20) { // Do not add a new card if maximum number of cards is already reached.
+      return;
    }
+   cardCount++;
+   removeSuggestions(); // Remove all the search options / suggestions as a suggestion has been chosen
+
+   // Create new card and add it to the DOM
+   let card = new Card(document.createElement("div"), selectedSuggestion.name, selectedSuggestion.lat, selectedSuggestion.lon);
+   card.el.classList.add("card");
+   card.addHTMLmarkup();
+   gridContainerEl.appendChild(card.el);
+   updateCardSizing();
+
+   // Add weather information into the card
+   getWeatherInfo(card);
 }
 
 window.addEventListener("resize", updateCardSizing);
@@ -29,8 +33,10 @@ function updateCardSizing() {
    }
 }
 
-// call weather api
+// Add weather information into the card
 async function getWeatherInfo(card) {
-   let weatherData = await getWeather(card.lat, card.lon);
-   console.log(weatherData);
+   const data = await getWeather(card.lat, card.lon);
+   const {main, sys, weather} = data;
+   console.log(data);
+   card.el.textContent = main.temp;
 }
