@@ -1,7 +1,5 @@
 const cardWidth = 300;
 const marginWidth = 20;
-const weatherBackgrounds = new Map();
-weatherBackgrounds.set("");
 
 function addCard(selectedSuggestion) {
    if (cardCount > 10) { // Do not add a new card if maximum number of cards is already reached.
