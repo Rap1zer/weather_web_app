@@ -51,13 +51,7 @@ function addSuggestionToDom(suggestion) {
    // add the div element to the dom
    searchContainerEl.appendChild(suggestion.el);
    // Add an event listener which adds the suggestion to the grid when clicked
-   suggestion.el.addEventListener("click", addCard);
-}
-
-// call weather api
-async function addPlaceToGrid(lat, lon) {
-   let result = await getWeather(lat, lon);
-   console.log(weatherData);
+   suggestion.el.addEventListener("click", function() {addCard(suggestion)});
 }
 
 // remove any previous suggestions
