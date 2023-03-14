@@ -36,8 +36,12 @@ function updateCardSizing() {
 // Add weather information into the card
 async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
-   console.log(data);
    const {main, sys, weather} = data;
+   card.el.style.backgroundImage = `url(weather-background-images/${weather[0].icon}.jpg)`;
+   // Change colour of text to white if it is nighttime in the place
+   if (weather[0].icon.slice(-1) === "n") { // It is night
+      card.el.style.color = "#eaeaea";
+   }
 }
 
 function kelvinToCelsius(kelvin) {
