@@ -1,5 +1,8 @@
 const cardWidth = 300;
 const marginWidth = 20;
+const weatherGrid = document.getElementById("weather-grid");
+let cardCount = 0;
+let cardOutline;
 
 function addCard(selectedSuggestion) {
    if (cardCount > 10) { // Do not add a new card if maximum number of cards is already reached.
@@ -23,7 +26,6 @@ window.addEventListener("resize", updateCardSizing);
 
 // Updates card columns so they are responsive to screen size
 function updateCardSizing() {
-   const weatherGrid = document.getElementById("weather-grid");
    const cards = document.getElementsByClassName("card");
    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
    // This variable stores how many columns of cards there should be depending on viewport width.
@@ -39,8 +41,12 @@ function updateCardSizing() {
       weatherGrid.style.textAlign = "center";
    }
 
+   const width = Math.min(370, (vw / numOfColumns) - (marginWidth * 2)) + "px";
    for (let i = 0; i < cards.length; i++) {
-      cards[i].style.width = Math.min(370, (vw / numOfColumns) - (marginWidth * 2)) + "px";
+      cards[i].style.width = width;
+   }
+   if (cardOutline) {
+      cardOutline.style.width = width;
    }
 }
 

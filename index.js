@@ -7,7 +7,6 @@ let suggestions = [];
 
 let gridColumns = 1;
 let gridRows = 1;
-let cardCount = 0;
 
 searchBtn.addEventListener("click", async function() {
    let places = await getCoord(searchBarEl.value, limit);

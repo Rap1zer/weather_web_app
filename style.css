@@ -80,6 +80,7 @@ h1 {
 
 .card {
    text-align: start;
+   vertical-align: top;
    display: inline-block;
    margin: 10px 20px;
    padding: 10px 40px;
