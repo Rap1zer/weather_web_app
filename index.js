@@ -9,6 +9,21 @@ let gridColumns = 1;
 let gridRows = 1;
 let cardCount = 0;
 
+searchBtn.addEventListener("click", async function() {
+   let places = await getCoord(searchBarEl.value, limit);
+
+   let suggestion = new Suggestion(document.createElement("div"), places[0].name, places[0].lat, places[0].lon);
+   if (places[0].state) {
+      suggestion.name += ", " + places[0].state;
+   }
+   if (places[0].country) {
+      suggestion.name += ", " + places[0].country;
+   }
+
+   searchBarEl.value = "";
+   addCard(suggestion);
+});
+
 // Show suggestions when something is typed into the search bar
 searchBarEl.addEventListener("input", async ()=> {
    // call geocoder API to see whether there are any cities that match the user's search
@@ -38,10 +53,6 @@ searchBarEl.addEventListener("input", async ()=> {
    }
 });
 
-searchBtn.addEventListener("click", ()=> {
-   console.log("clicked btn");
-})
-
 function addSuggestionToDom(suggestion) {
    // add the text to the div element
    suggestion.el.textContent = suggestion.name;
@@ -51,7 +62,9 @@ function addSuggestionToDom(suggestion) {
    // add the div element to the dom
    searchContainerEl.appendChild(suggestion.el);
    // Add an event listener which adds the suggestion to the grid when clicked
-   suggestion.el.addEventListener("click", function() {addCard(suggestion)});
+   suggestion.el.addEventListener("click", function() 
+   {searchBarEl.value = "";
+   addCard(suggestion)});
 }
 
 // remove any previous suggestions
