@@ -5,8 +5,7 @@
 
 body {
    margin: 0;
-   background: rgb(21,142,218);
-   background: linear-gradient(rgba(21,152,218,1) 15%, rgba(36,215,250,1) 48%, rgba(90,227,222,1) 78%);
+   background: #edeeef;
 }
 
 input:focus,
@@ -21,12 +20,13 @@ header {
    align-items: center;
    margin-bottom: 40px;
    padding: 0 2vw;
+   border-bottom: 8px solid #56566c;
    width: 100vw;
 }
 
 h1 {
    text-align: center;
-   color: white;
+   color: #313134;
    font-size: 3rem;
    margin: 20px 2vw;
 }
@@ -38,7 +38,7 @@ h1 {
 #search-btn {
    border: 0;
    border-radius: 0 5px 5px 0;
-   background-color: #de3c3c;
+   background-color: #3242af;
    color: white;
    width: 100px;
    height: 2.5rem;
