@@ -36,6 +36,14 @@ function updateCardSizing() {
 // Add weather information into the card
 async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
-   const {main, sys, weather} = data;
    console.log(data);
+   const {main, sys, weather} = data;
+}
+
+function kelvinToCelsius(kelvin) {
+   return kelvin - 273.15;
+}
+
+function kelvinToFahrenheit(kelvin) {
+   return 1.8*(k - 273) + 32;
 }

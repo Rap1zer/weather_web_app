@@ -12,14 +12,14 @@ input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: #de3c3c solid 1px;
+    outline: #3242af solid 1px;
 }
 
 header {
    display: flex;
    align-items: center;
-   margin-bottom: 40px;
-   padding: 0 2vw;
+   margin-bottom: 30px;
+   padding: 1vw 2vw;
    border-bottom: 8px solid #56566c;
    width: 100vw;
 }
@@ -28,7 +28,7 @@ h1 {
    text-align: center;
    color: #313134;
    font-size: 3rem;
-   margin: 20px 2vw;
+   margin: 10px 2vw;
 }
 
 #search-bar {
