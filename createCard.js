@@ -23,10 +23,21 @@ window.addEventListener("resize", updateCardSizing);
 
 // Updates card columns so they are responsive to screen size
 function updateCardSizing() {
+   const weatherGrid = document.getElementById("weather-grid");
    const cards = document.getElementsByClassName("card");
    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
    // This variable stores how many columns of cards there should be depending on viewport width.
-   let numOfColumns = Math.min(cards.length, Math.floor(vw / (cardWidth + marginWidth * 2)));
+   let numOfColumns;
+   // This variable stores the maximum number of cards can fit in a row
+   const maxColumns = Math.floor(vw / (cardWidth + marginWidth * 2));
+
+   if (cards.length < maxColumns) {
+      numOfColumns = cards.length;
+      weatherGrid.style.textAlign = "start";
+   } else {
+      numOfColumns = maxColumns;
+      weatherGrid.style.textAlign = "center";
+   }
 
    for (let i = 0; i < cards.length; i++) {
       cards[i].style.width = Math.min(370, (vw / numOfColumns) - (marginWidth * 2)) + "px";
