@@ -45,5 +45,5 @@ function kelvinToCelsius(kelvin) {
 }
 
 function kelvinToFahrenheit(kelvin) {
-   return 1.8*(k - 273) + 32;
+   return (kelvin - 273.15) * (9/5) + 32;
 }
