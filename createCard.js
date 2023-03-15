@@ -1,6 +1,7 @@
 const cardWidth = 300;
 const marginWidth = 20;
 const weatherGrid = document.getElementById("weather-grid");
+let cards = new Array();
 let unit = "c";
 let cardCount = 0;
 let cardOutline;
@@ -17,6 +18,7 @@ function addCard(selectedSuggestion) {
    card.el.classList.add("card");
    card.addHTMLmarkup();
    gridContainerEl.appendChild(card.el);
+   cards.push(card);
    updateCardSizing();
 
    // Add weather information into the card
@@ -27,15 +29,14 @@ window.addEventListener("resize", updateCardSizing);
 
 // Updates card columns so they are responsive to screen size
 function updateCardSizing() {
-   const cards = document.getElementsByClassName("card");
    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
    // This variable stores how many columns of cards there should be depending on viewport width.
    let numOfColumns;
    // This variable stores the maximum number of cards can fit in a row
    const maxColumns = Math.floor(vw / (cardWidth + marginWidth * 2));
 
-   if (cards.length < maxColumns) {
-      numOfColumns = cards.length;
+   if (cardCount < maxColumns) {
+      numOfColumns = cardCount;
       weatherGrid.style.textAlign = "start";
    } else {
       numOfColumns = maxColumns;
@@ -43,8 +44,8 @@ function updateCardSizing() {
    }
 
    const width = Math.min(370, (vw / numOfColumns) - (marginWidth * 2)) + "px";
-   for (let i = 0; i < cards.length; i++) {
-      cards[i].style.width = width;
+   for (let i = 0; i < cardCount; i++) {
+      cards[i].el.style.width = width;
    }
    if (cardOutline) {
       cardOutline.style.width = width;
