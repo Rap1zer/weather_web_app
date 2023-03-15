@@ -27,6 +27,7 @@ searchBtn.addEventListener("click", async function() {
 searchBarEl.addEventListener("input", async ()=> {
    // call geocoder API to see whether there are any cities that match the user's search
    let result = await getCoord(searchBarEl.value, limit);
+   console.log(result);
    // styling which changes the border radius of the search bar
    if (result.length > 0) {
       searchBarEl.style.borderRadius = '5px 0 0 0';
