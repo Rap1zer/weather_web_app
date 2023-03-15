@@ -10,6 +10,14 @@ function addCard(selectedSuggestion) {
    if (cardCount > 10) { // Do not add a new card if maximum number of cards is already reached.
       return;
    }
+   // Check if the card that wants to be added already exists.
+   for (let i = 0; i < cards.length; i++) {
+      // Compare the coordinates of the place with all existing cards
+      if (cards[i].lat === selectedSuggestion.lat && cards[i].lon === selectedSuggestion.lon) {
+         return; // card already exists, break function.
+      }
+   }
+
    cardCount++;
    removeSuggestions(); // Remove all the search options / suggestions as a suggestion has been chosen
 
@@ -21,18 +29,18 @@ function addCard(selectedSuggestion) {
    cards.push(card);
    updateCardSizing();
 
-   // Add weather information into the card
+   // Add weather information into the card.
    getWeatherInfo(card);
 }
 
 window.addEventListener("resize", updateCardSizing);
 
-// Updates card columns so they are responsive to screen size
+// Updates card columns so they are responsive to screen size.
 function updateCardSizing() {
    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
    // This variable stores how many columns of cards there should be depending on viewport width.
    let numOfColumns;
-   // This variable stores the maximum number of cards can fit in a row
+   // This variable stores the maximum number of cards can fit in a row.
    const maxColumns = Math.floor(vw / (cardWidth + marginWidth * 2));
 
    if (cardCount < maxColumns) {
