@@ -1,6 +1,7 @@
 const cardWidth = 300;
 const marginWidth = 20;
 const weatherGrid = document.getElementById("weather-grid");
+let unit = "c";
 let cardCount = 0;
 let cardOutline;
 
@@ -61,13 +62,21 @@ async function getWeatherInfo(card) {
       card.el.style.color = "#eaeaea";
    }
 
-   card.temp.textContent = convertKelvin(main.temp, "c");
+   let tempText = convertKelvin(main.temp);
+   if (!Number.isInteger(tempText)) {
+      const decimalPortion = Math.round(tempText % 1 * 10);
+      tempText = `${Math.round(tempText)}<span class="decimal-text">.${decimalPortion}</span>`;
+   }
+   card.temp.innerHTML = tempText;
+
+   card.description.textContent = weather[0].description;
+   card.humidity.textContent = "Humidity: " + main.humidity;
 }
 
-function convertKelvin(kelvin, unit) {
+function convertKelvin(kelvin) {
    if (unit === "c") { // if the unit is "c", then convert kelvin to celsius
-      return Math.round((kelvin - 273.15 + Number.EPSILON) * 10) / 10;
+      return kelvin - 273.15;
    } else { // convert kelvin to farenheit
-      return Math.round(((kelvin - 273.15) * (9/5) + 32 + Number.EPSILON) * 10) / 10;
+      return (kelvin - 273.15) * (9/5) + 32;
    }
 }
