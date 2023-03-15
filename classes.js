@@ -20,11 +20,11 @@ class Card {
 
    addHTMLmarkup() {
       const div = this.el;
-      this.title = document.createElement("h2");
-      this.title.textContent = this.name;
       this.icon = document.createElement("img");
-      this.temp = document.createElement("p");
+      this.temp = document.createElement("h2");
+      this.title = document.createElement("h3");
+      this.title.textContent = this.name;
       this.temp.textContent = "some text";
-      this.el.append(this.title, this.icon, this.temp);
+      this.el.append(this.temp, this.title, this.icon);
    }
 }

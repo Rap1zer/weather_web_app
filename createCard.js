@@ -55,16 +55,19 @@ async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
    const {main, sys, weather} = data;
    card.el.style.backgroundImage = `url(weather-background-images/${weather[0].icon}.jpg)`;
+   console.log(data);
    // Change colour of text to white if it is nighttime in the place
    if (weather[0].icon.slice(-1) === "n") { // It is night
       card.el.style.color = "#eaeaea";
    }
+
+   card.temp.textContent = convertKelvin(main.temp, "celsius");
 }
 
-function kelvinToCelsius(kelvin) {
-   return kelvin - 273.15;
-}
-
-function kelvinToFahrenheit(kelvin) {
-   return (kelvin - 273.15) * (9/5) + 32;
+function convertKelvin(kelvin, unit) {
+   if (unit === "celsius") {
+      return Math.round((kelvin - 273.15 + Number.EPSILON) * 10) / 10;
+   } else {
+      return Math.round(((kelvin - 273.15) * (9/5) + 32 + Number.EPSILON) * 10) / 10;
+   }
 }
