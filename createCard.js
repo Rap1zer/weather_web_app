@@ -61,13 +61,13 @@ async function getWeatherInfo(card) {
       card.el.style.color = "#eaeaea";
    }
 
-   card.temp.textContent = convertKelvin(main.temp, "celsius");
+   card.temp.textContent = convertKelvin(main.temp, "c");
 }
 
 function convertKelvin(kelvin, unit) {
-   if (unit === "celsius") {
+   if (unit === "c") { // if the unit is "c", then convert kelvin to celsius
       return Math.round((kelvin - 273.15 + Number.EPSILON) * 10) / 10;
-   } else {
+   } else { // convert kelvin to farenheit
       return Math.round(((kelvin - 273.15) * (9/5) + 32 + Number.EPSILON) * 10) / 10;
    }
 }
