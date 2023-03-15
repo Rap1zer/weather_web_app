@@ -5,9 +5,6 @@ const gridContainerEl = document.getElementById("weather-grid");
 const limit = 5;
 let suggestions = [];
 
-let gridColumns = 1;
-let gridRows = 1;
-
 searchBtn.addEventListener("click", async function() {
    let places = await getCoord(searchBarEl.value, limit);
 

@@ -64,7 +64,7 @@ async function getWeatherInfo(card) {
 
    let tempText = convertKelvin(main.temp);
    if (!Number.isInteger(tempText)) {
-      const decimalPortion = Math.round(tempText % 1 * 10);
+      const decimalPortion = Math.abs(Math.round(tempText % 1 * 10));
       tempText = `${Math.round(tempText)}<span class="decimal-text">.${decimalPortion}</span>`;
    }
    card.temp.innerHTML = tempText;
