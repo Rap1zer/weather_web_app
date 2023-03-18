@@ -8,10 +8,7 @@ body {
    background: #edeeef;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
+input:focus {
     outline: #3242af solid 1px;
 }
 
@@ -96,10 +93,24 @@ h1 {
 }
 
 .card-container {
+   position: relative;
    height: 100%;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+}
+
+.close-btn {
+   background: url(./image-icons/close-window-icon.svg);
+   background-size: cover;
+   border-radius: 50%;
+   position: absolute;
+   top: 10px;
+   right: -5px;
+   height: 30px;
+   width: 30px;
+   padding: 0;
+   cursor: pointer;
 }
 
 h2 {
