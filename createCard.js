@@ -63,7 +63,7 @@ function updateCardSizing() {
 // Add weather information into the card
 async function getWeatherInfo(card) {
    const data = await getWeather(card.lat, card.lon);
-   const {main, sys, weather} = data;
+   const {main, sys, weather, wind} = data;
    card.el.style.backgroundImage = `url(weather-background-images/${weather[0].icon}.jpg)`;
    console.log(data);
    // Change colour of text to white if it is nighttime in the place
@@ -79,7 +79,8 @@ async function getWeatherInfo(card) {
    card.temp.innerHTML = tempText;
 
    card.description.textContent = weather[0].description;
-   card.humidity.textContent = "Humidity: " + main.humidity;
+   card.wind.textContent = "Wind: " + wind.speed + "m/s";
+   card.humidity.textContent = "Humidity: " + main.humidity + "%";
 }
 
 function convertKelvin(kelvin) {

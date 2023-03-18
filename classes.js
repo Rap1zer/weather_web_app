@@ -8,7 +8,7 @@ class Suggestion {
 }
 
 class Card {
-   constructor(el, name, lat, lon, title, temp, description, humidity) {
+   constructor(el, name, lat, lon, title, temp, description, humidity, wind) {
       this.el = el;
       this.name = name;
       this.lat = lat;
@@ -24,9 +24,10 @@ class Card {
       this.title = document.createElement("h3");
       this.title.textContent = this.name;
       this.description = document.createElement("h4");
+      this.wind = document.createElement("h4");
       this.humidity = document.createElement("h4");
       divTop.append(this.temp, this.description);
-      divBottom.append(this.humidity, this.title);
+      divBottom.append(this.wind, this.humidity, this.title);
       cardContainer.append(divTop, divBottom);
       this.el.append(cardContainer);
    }
